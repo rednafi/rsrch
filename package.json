@@ -1,0 +1,24 @@
+{
+  "name": "rsrch",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build && pagefind --site dist",
+    "preview": "astro preview",
+    "check": "astro check",
+    "test:screens": "node scripts/screens.mjs",
+    "test:scale": "node scripts/scale.mjs"
+  },
+  "dependencies": {
+    "astro": "^7.3.8",
+    "mermaid": "^12.1.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@types/node": "^26.6.5",
+    "pagefind": "^1.5.2",
+    "playwright": "^1.64.0",
+    "typescript": "^6.0.3"
+  }
+}

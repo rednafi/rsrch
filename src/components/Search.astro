@@ -1,0 +1,29 @@
+---
+import { url } from "../lib/docs";
+---
+
+<!--
+  Search runs on Pagefind. The build writes a static, chunked index to /pagefind/.
+  A query downloads only the index chunks for its words, so search stays fast with
+  100k docs and needs no server.
+-->
+<button class="search-open" type="button" data-search-open aria-haspopup="dialog">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+  <span class="search-label">Search</span>
+  <kbd>/</kbd>
+</button>
+
+<dialog class="search" data-search data-pagefind-path={url("pagefind/")} aria-label="Search docs">
+  <form method="dialog" class="search-bar" role="search">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+    <input type="search" placeholder="Search docs…" autocomplete="off" spellcheck="false" aria-label="Search query" />
+    <button type="submit" class="search-close" aria-label="Close search">Esc</button>
+  </form>
+  <p class="search-status" aria-live="polite"></p>
+  <ol class="search-results"></ol>
+</dialog>
+
+<script>
+  import { mountSearch } from "../scripts/search";
+  mountSearch(document.querySelector<HTMLDialogElement>("[data-search]")!);
+</script>

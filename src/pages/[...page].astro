@@ -1,0 +1,30 @@
+---
+import type { GetStaticPaths, Page } from "astro";
+import DocCard from "../components/DocCard.astro";
+import Base from "../layouts/Base.astro";
+import { allDocs, type Doc } from "../lib/docs";
+
+// Pages of 30 keep every list page small, however many docs there are.
+export const getStaticPaths = (async ({ paginate }) => paginate(await allDocs(), { pageSize: 30 })) satisfies GetStaticPaths;
+
+const { page } = Astro.props as { page: Page<Doc> };
+---
+
+<Base title="rsrch" description="Long-form research notes on Go, agents and software design.">
+  <section class="hero">
+    <h1>Research notes</h1>
+    <p>Long-form write-ups on Go, agent harnesses and software design. Press <kbd>/</kbd> to search all {page.total} docs.</p>
+  </section>
+  <ol class="doc-list">
+    {page.data.map((doc) => <DocCard doc={doc} />)}
+  </ol>
+  {
+    page.lastPage > 1 && (
+      <nav class="pager" aria-label="Pagination">
+        {page.url.prev ? <a href={page.url.prev}>← Newer</a> : <span />}
+        <span>Page {page.currentPage} of {page.lastPage}</span>
+        {page.url.next ? <a href={page.url.next}>Older →</a> : <span />}
+      </nav>
+    )
+  }
+</Base>

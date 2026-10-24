@@ -1,0 +1,20 @@
+[
+  {"type":"text","id":"title","x":0,"y":-80,"text":"Pi Durable: one harness, many surfaces","fontSize":28},
+  {"type":"rectangle","id":"tui","x":0,"y":0,"width":200,"height":80,"label":{"text":"TUI / CLI"}},
+  {"type":"rectangle","id":"slack","x":0,"y":120,"width":200,"height":80,"label":{"text":"Slack bot"}},
+  {"type":"rectangle","id":"cron","x":0,"y":240,"width":200,"height":80,"label":{"text":"launchd job"}},
+  {"type":"rectangle","id":"harness","x":340,"y":120,"width":280,"height":80,"strokeColor":"accent","backgroundColor":"accent-fill","label":{"text":"Harness\ntasks + atomic commits"}},
+  {"type":"rectangle","id":"registry","x":340,"y":300,"width":280,"height":80,"label":{"text":"Registry\nextensions, tools, hooks"}},
+  {"type":"rectangle","id":"storage","x":760,"y":0,"width":240,"height":80,"label":{"text":"Storage\nSQLite / JSONL"}},
+  {"type":"rectangle","id":"models","x":760,"y":120,"width":240,"height":80,"label":{"text":"Models\npi-ai"}},
+  {"type":"rectangle","id":"env","x":760,"y":240,"width":240,"height":80,"label":{"text":"Exec env\nlocal or remote"}},
+  {"type":"arrow","id":"a1","x":200,"y":40,"points":[[0,0],[140,110]],"start":{"id":"tui"},"end":{"id":"harness"},"strokeColor":"muted"},
+  {"type":"arrow","id":"a2","x":200,"y":160,"points":[[0,0],[140,0]],"start":{"id":"slack"},"end":{"id":"harness"},"strokeColor":"muted"},
+  {"type":"arrow","id":"a3","x":200,"y":280,"points":[[0,0],[140,-110]],"start":{"id":"cron"},"end":{"id":"harness"},"strokeColor":"muted"},
+  {"type":"arrow","id":"b1","x":620,"y":140,"points":[[0,0],[140,-100]],"start":{"id":"harness"},"end":{"id":"storage"},"strokeColor":"accent"},
+  {"type":"arrow","id":"b2","x":620,"y":160,"points":[[0,0],[140,0]],"start":{"id":"harness"},"end":{"id":"models"}},
+  {"type":"arrow","id":"b3","x":620,"y":180,"points":[[0,0],[140,100]],"start":{"id":"harness"},"end":{"id":"env"}},
+  {"type":"arrow","id":"c1","x":480,"y":300,"points":[[0,0],[0,-100]],"start":{"id":"registry"},"end":{"id":"harness"}},
+  {"type":"text","id":"n1","x":0,"y":360,"text":"submit / watch / steer","fontSize":16,"strokeColor":"muted"},
+  {"type":"text","id":"n2","x":760,"y":360,"text":"checkpoint before showing","fontSize":16,"strokeColor":"accent"}
+]

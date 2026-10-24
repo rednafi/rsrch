@@ -1,0 +1,21 @@
+[crash pid=50854] submitted job-42, waiting (will be killed)
+[crash pid=50854] search_linear START flaky
+[crash pid=50854] post_slack START deploying
+== killed pid 50854 with SIGKILL (exit 137)
+[resume pid=50856] search_linear START flaky
+[resume pid=50856] search_linear END
+[resume pid=50856] submission 8 settled: status=done
+  entry pi.assistant: text:"All done after resume."
+  entry pi.tool-result: 
+  entry pi.tool-result: text:"<harness>\n[error] Tool post_slack was interrupted and may have partially run\n</harness>"
+  entry pi.assistant: toolCall:search_linear | toolCall:post_slack
+  entry pi.system: 
+  entry pi.user: triage the flaky test
+  faux model calls in this process: 1
+== side-effects.log
+crash: submitted job-42, waiting (will be killed)
+crash: search_linear START flaky
+crash: post_slack START deploying
+resume: search_linear START flaky
+resume: search_linear END
+resume: submission 8 settled: status=done

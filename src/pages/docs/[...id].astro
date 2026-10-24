@@ -1,0 +1,39 @@
+---
+import type { GetStaticPaths } from "astro";
+import { render } from "astro:content";
+import Toc from "../../components/Toc.astro";
+import Base from "../../layouts/Base.astro";
+import { allDocs, formatDate, readingMinutes, type Doc } from "../../lib/docs";
+
+export const getStaticPaths = (async () =>
+  (await allDocs()).map((doc) => ({ params: { id: doc.id }, props: { doc } }))) satisfies GetStaticPaths;
+
+const { doc } = Astro.props as { doc: Doc };
+const { Content, headings } = await render(doc);
+---
+
+<Base title={doc.data.title} description={doc.data.description}>
+  <div class="doc-layout">
+    <!-- Only the article goes into the search index, not the header or the TOC. -->
+    <article class="prose" data-pagefind-body>
+      <header class="doc-header">
+        <h1 data-pagefind-meta="title">{doc.data.title}</h1>
+        <p class="lede">{doc.data.description}</p>
+        <div class="meta" data-pagefind-ignore>
+          <time datetime={doc.data.date.toISOString()}>{formatDate(doc.data.date)}</time>
+          <span>{readingMinutes(doc)} min read</span>
+          {doc.data.tags.map((tag) => <span class="tag" data-pagefind-filter="tag">{tag}</span>)}
+        </div>
+      </header>
+      <Content />
+    </article>
+    <aside class="doc-aside">
+      <Toc headings={headings} />
+    </aside>
+  </div>
+</Base>
+
+<script>
+  import { renderMermaid } from "../../scripts/mermaid";
+  renderMermaid();
+</script>

@@ -1,0 +1,23 @@
+[
+  {"type":"text","id":"title","x":0,"y":-80,"text":"Crash mid-tool, resume in a new process","fontSize":28},
+  {"type":"rectangle","id":"submit","x":0,"y":0,"width":200,"height":80,"label":{"text":"submit\nrequestId job-42"}},
+  {"type":"rectangle","id":"gen1","x":280,"y":0,"width":200,"height":80,"label":{"text":"generation\ncheckpoint"}},
+  {"type":"rectangle","id":"tools","x":560,"y":0,"width":200,"height":80,"label":{"text":"tool tasks\nintent stored"}},
+  {"type":"rectangle","id":"kill","x":840,"y":0,"width":200,"height":80,"strokeColor":"bad","backgroundColor":"bad-fill","label":{"text":"kill -9\nmid-tool"}},
+  {"type":"rectangle","id":"reopen","x":0,"y":280,"width":200,"height":80,"label":{"text":"Harness.open\n+ resume()"}},
+  {"type":"rectangle","id":"replay","x":280,"y":280,"width":200,"height":80,"strokeColor":"accent","backgroundColor":"accent-fill","label":{"text":"replay tools\nby policy"}},
+  {"type":"rectangle","id":"gen2","x":560,"y":280,"width":200,"height":80,"label":{"text":"generation\nfinal answer"}},
+  {"type":"rectangle","id":"done","x":840,"y":280,"width":200,"height":80,"label":{"text":"same submission\ndone"}},
+  {"type":"rectangle","id":"safe","x":160,"y":460,"width":200,"height":60,"strokeColor":"good","backgroundColor":"good-fill","label":{"text":"safe: reruns","fontSize":16}},
+  {"type":"rectangle","id":"unsafe","x":400,"y":460,"width":200,"height":60,"strokeColor":"warn","backgroundColor":"warn-fill","label":{"text":"unsafe: model told","fontSize":16}},
+  {"type":"arrow","id":"r1","x":200,"y":40,"points":[[0,0],[80,0]],"start":{"id":"submit"},"end":{"id":"gen1"}},
+  {"type":"arrow","id":"r2","x":480,"y":40,"points":[[0,0],[80,0]],"start":{"id":"gen1"},"end":{"id":"tools"}},
+  {"type":"arrow","id":"r3","x":760,"y":40,"points":[[0,0],[80,0]],"start":{"id":"tools"},"end":{"id":"kill"},"strokeColor":"bad"},
+  {"type":"arrow","id":"jump","x":940,"y":80,"points":[[0,0],[0,80],[-840,80],[-840,200]],"start":{"id":"kill"},"end":{"id":"reopen"},"strokeStyle":"dashed","strokeColor":"muted"},
+  {"type":"text","id":"jnote","x":300,"y":110,"text":"new process opens the same SQLite file","fontSize":16,"strokeColor":"muted"},
+  {"type":"arrow","id":"s1","x":200,"y":320,"points":[[0,0],[80,0]],"start":{"id":"reopen"},"end":{"id":"replay"}},
+  {"type":"arrow","id":"s2","x":480,"y":320,"points":[[0,0],[80,0]],"start":{"id":"replay"},"end":{"id":"gen2"}},
+  {"type":"arrow","id":"s3","x":760,"y":320,"points":[[0,0],[80,0]],"start":{"id":"gen2"},"end":{"id":"done"}},
+  {"type":"arrow","id":"d1","x":360,"y":360,"points":[[0,0],[-100,100]],"start":{"id":"replay"},"end":{"id":"safe"},"strokeColor":"good"},
+  {"type":"arrow","id":"d2","x":400,"y":360,"points":[[0,0],[100,100]],"start":{"id":"replay"},"end":{"id":"unsafe"},"strokeColor":"warn"}
+]

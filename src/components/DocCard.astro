@@ -1,0 +1,20 @@
+---
+import { formatDate, readingMinutes, url, type Doc } from "../lib/docs";
+
+interface Props {
+  doc: Doc;
+}
+const { doc } = Astro.props;
+---
+
+<li class="doc-card">
+  <a href={url(`docs/${doc.id}/`)}>
+    <h2>{doc.data.title}</h2>
+    <p>{doc.data.description}</p>
+    <div class="meta">
+      <time datetime={doc.data.date.toISOString()}>{formatDate(doc.data.date)}</time>
+      <span>{readingMinutes(doc)} min read</span>
+      {doc.data.tags.map((tag) => <span class="tag">{tag}</span>)}
+    </div>
+  </a>
+</li>
