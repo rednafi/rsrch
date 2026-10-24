@@ -1,4 +1,4 @@
-# Build the site and publish it to GitHub Pages on every push to main.
+# Check, build and test the site on every push to main, then publish it to GitHub Pages.
 name: Deploy
 
 on:
@@ -28,12 +28,21 @@ jobs:
       - run: npm ci
       - run: npm run check
       - run: npm run build
+      - run: npx playwright install --with-deps chromium-headless-shell
+      - run: npm run test:screens
+      - if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: screens
+          path: screens/
       - uses: actions/upload-pages-artifact@v5
         with:
           path: dist
 
+  # Pages on the free plan needs a public repo, so a private repo stops after the build.
   deploy:
     needs: build
+    if: github.event.repository.visibility == 'public'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
